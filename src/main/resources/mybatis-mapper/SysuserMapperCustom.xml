@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.hist.mapper.SysuserMapperCustom" >
+    <sql id="query_sysuser_where">
+        <if test="sysuserCustom != null">
+            <if test="sysuserCustom.sysmc != null and sysuserCustom.sysmc != '' ">
+                and  sysmc like '%${sysuserCustom.sysmc}%'
+            </if>
+            <if test="sysuserCustom.username != null and sysuserCustom.username!= '' ">
+                and  username like '%${sysuserCustom.username}%'
+            </if>
+            <if test="sysuserCustom.id != null and sysuserCustom.id!= '' ">
+                and  id = #{sysuserCustom.id}
+            </if>
+            <if test="sysuserCustom.groupid != null and sysuserCustom.groupid!= '' ">
+                and  GROUPID = #{sysuserCustom.groupid}
+            </if>
+        </if>
+    </sql>
+
+    <select id="findUserList" resultType="cn.edu.hist.model.SysuserCustom" parameterType="cn.edu.hist.model.SysuserVo">
+      select *
+from (
+            select *,
+                   case
+                          sysuser.GROUPID
+                          when '1'
+                                 THEN (select mc from userjd where userjd.id = sysid)
+                          when '2'
+                                 THEN
+                                        (select mc from userjd where userjd.id = sysid)
+                          when '3'
+                                 THEN
+                                        (select mc from useryy where useryy.id = sysid)
+                          when '4'
+                                 THEN
+                                        (select mc from usergys where usergys.id = sysid)
+                          end sysmc
+            from sysuser
+     ) sysuser
+     <where>
+        <include refid="query_sysuser_where"/>
+     </where>
+
+    </select>
+
+    <select id="findUserTotal"  parameterType="cn.edu.hist.model.SysuserVo" resultType="int">
+        select count(*)
+        from (
+        select *,
+        case
+        sysuser.GROUPID
+        when '1'
+        THEN (select mc from userjd where userjd.id = sysid)
+        when '2'
+        THEN
+        (select mc from userjd where userjd.id = sysid)
+        when '3'
+        THEN
+        (select mc from useryy where useryy.id = sysid)
+        when '4'
+        THEN
+        (select mc from usergys where usergys.id = sysid)
+        end sysmc
+        from sysuser
+        ) sysuser
+        <where>
+        <include refid="query_sysuser_where"/>
+        </where>
+    </select>
+</mapper>

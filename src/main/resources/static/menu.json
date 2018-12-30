@@ -1,0 +1,7 @@
+{
+  "menus" : [{"icon" : "icon-sys","menuid" : "1","menuname" : "系统管理","url" : "","menus" : [
+    {"icon" : "icon-log","menuid" : "1_1","menuname" : "用户管理","url" : "user/toquery"
+    }]
+  }
+  ]
+}
