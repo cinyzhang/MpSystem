@@ -8,8 +8,9 @@ var BaseUrl= window.location.protocol + '//' + window.location.host + '/'+ webNa
 jQuery(document).ready(function(){
 	loadingReady();
 }); 
+
 function loading(){
-	$("body").append('<div  id="load" style="width:100%;position:absolute;top:250px;text-align:center;"><img src="'+BaseUrl+'images/loading2.gif" /></div>');
+	$("body").append('<div  id="load" style="width:100%;position:absolute;top:250px;text-align:center;"><img src="/images/loading2.gif" /></div>');
 }
 function removeLoading(){
 	$("#load").remove();

@@ -3,14 +3,14 @@
 <mapper namespace="cn.edu.hist.mapper.SysuserMapperCustom" >
     <sql id="query_sysuser_where">
         <if test="sysuserCustom != null">
-            <if test="sysuserCustom.sysmc != null and sysuserCustom.sysmc != '' ">
-                and  sysmc like '%${sysuserCustom.sysmc}%'
+            <if test="sysuserCustom.userid != null and sysuserCustom.userid != '' ">
+                and  userid like '%${sysuserCustom.userid}%'
             </if>
             <if test="sysuserCustom.username != null and sysuserCustom.username!= '' ">
                 and  username like '%${sysuserCustom.username}%'
             </if>
-            <if test="sysuserCustom.id != null and sysuserCustom.id!= '' ">
-                and  id = #{sysuserCustom.id}
+            <if test="sysuserCustom.sysmc != null and sysuserCustom.sysmc != '' ">
+                and  sysmc like '%${sysuserCustom.sysmc}%'
             </if>
             <if test="sysuserCustom.groupid != null and sysuserCustom.groupid!= '' ">
                 and  GROUPID = #{sysuserCustom.groupid}

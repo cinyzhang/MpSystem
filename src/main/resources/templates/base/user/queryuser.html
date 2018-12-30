@@ -23,15 +23,15 @@
         var columns_v = [ [ {
             field : 'userid',//对应json中的key
             title : '账号',
-            width : 120
+            width : 150
         }, {
             field : 'username',//对应json中的key
             title : '名称 ',
-            width : 180
+            width : 200
         }, {
             field : 'groupid',//对应json中的key
             title : '用户类型',
-            width : 120,
+            width : 150,
             formatter : function(value, row, index) {//通过此方法格式化显示内容,value表示从json中取出该单元格的值，row表示这一行的数据，是一个对象,index:行的序号
                 if(value =='1'){
                     return "卫生局";
@@ -49,11 +49,16 @@
         }, {
             field : 'sysmc',//对应json中的key
             title : '所属单位',
-            width : 120
-        }, {
+            width : 250
+        },
+            {
+                field : 'createtime',//对应json中的key
+                title : '创建时间',
+                width : 250
+            }, {
             field : 'userstate',//对应json中的key
             title : '状态',
-            width : 120,
+            width : 80,
             formatter : function(value, row, index) {//通过此方法格式化显示内容,value表示从json中取出该单元格的值，row表示这一行的数据，是一个对象,index:行的序号
                 if(value =='1'){
                     return "正常";
@@ -115,18 +120,16 @@
             <td><INPUT type="text" name="sysuserCustom.userid" /></TD>
             <TD class="left">用户名称：</TD>
             <td><INPUT type="text" name="sysuserCustom.username" /></TD>
-
             <TD class="left">单位名称：</TD>
             <td><INPUT type="text" name="sysuserCustom.sysmc" /></TD>
             <TD class="left">用户类型：</TD>
             <td><select name="sysuserCustom.groupid">
-                <option value="">请选择</option>
+                <option value="">--请选择--</option>
                 <option value="1">卫生局</option>
                 <option value="2">卫生院</option>
                 <option value="3">卫生室</option>
                 <option value="4">供货商</option>
                 <option value="0">系统管理员</option>
-
             </select></TD>
             <td><a id="btn" href="#" onclick="queryuser()"
                    class="easyui-linkbutton" iconCls='icon-search'>查询</a></td>
