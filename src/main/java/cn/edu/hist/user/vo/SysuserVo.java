@@ -1,4 +1,4 @@
-package cn.edu.hist.model;
+package cn.edu.hist.user.vo;
 
 import cn.edu.hist.model.SysuserCustom;
 

@@ -1,6 +1,7 @@
 package cn.edu.hist.user.service;
 
 import cn.edu.hist.model.*;
+import cn.edu.hist.user.vo.SysuserVo;
 
 import java.util.List;
 

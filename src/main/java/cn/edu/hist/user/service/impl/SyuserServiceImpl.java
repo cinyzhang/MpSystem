@@ -3,13 +3,12 @@ package cn.edu.hist.user.service.impl;
 import cn.edu.hist.mapper.*;
 import cn.edu.hist.model.*;
 import cn.edu.hist.user.service.SysuserService;
+import cn.edu.hist.user.vo.SysuserVo;
 import com.github.pagehelper.PageHelper;
-import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
-import sun.security.provider.MD5;
 
 import java.util.List;
 import java.util.UUID;

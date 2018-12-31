@@ -1,10 +1,9 @@
 package cn.edu.hist.user.controller;
 
 import cn.edu.hist.model.SysuserCustom;
-import cn.edu.hist.model.SysuserVo;
+import cn.edu.hist.user.vo.SysuserVo;
 import cn.edu.hist.user.service.SysuserService;
 import com.xiaoleilu.hutool.json.JSONObject;
-import com.xiaoleilu.hutool.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

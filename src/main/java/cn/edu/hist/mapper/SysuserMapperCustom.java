@@ -1,7 +1,7 @@
 package cn.edu.hist.mapper;
 
 import cn.edu.hist.model.SysuserCustom;
-import cn.edu.hist.model.SysuserVo;
+import cn.edu.hist.user.vo.SysuserVo;
 
 import java.util.List;
 public interface SysuserMapperCustom {

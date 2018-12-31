@@ -18,7 +18,7 @@
         </if>
     </sql>
 
-    <select id="findUserList" resultType="cn.edu.hist.model.SysuserCustom" parameterType="cn.edu.hist.model.SysuserVo">
+    <select id="findUserList" resultType="cn.edu.hist.model.SysuserCustom" parameterType="cn.edu.hist.user.vo.SysuserVo">
       select *
 from (
             select *,
@@ -44,7 +44,7 @@ from (
 
     </select>
 
-    <select id="findUserTotal"  parameterType="cn.edu.hist.model.SysuserVo" resultType="int">
+    <select id="findUserTotal" parameterType="cn.edu.hist.user.vo.SysuserVo" resultType="int">
         select count(*)
         from (
         select *,
