@@ -13,5 +13,5 @@ public interface SysuserService {
     Useryy findYyBymc(String mc);
     Userjd findJdBymc(String mc);
     Usergys findGysBymc(String mc);
-
+    Boolean deleteByUserId(String id);
 }

@@ -121,4 +121,14 @@ public class SyuserServiceImpl implements SysuserService {
         return null;
     }
 
+    @Override
+    public Boolean deleteByUserId(String id) {
+        Sysuser sysuser = sysuserMapper.selectByPrimaryKey(id);
+        if(sysuser ==null){
+            return false;
+        }
+        sysuserMapper.deleteByPrimaryKey(sysuser.getId());
+        return true;
+    }
+
 }

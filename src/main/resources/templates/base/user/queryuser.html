@@ -27,11 +27,11 @@
         }, {
             field : 'username',//对应json中的key
             title : '名称 ',
-            width : 200
+            width : 150
         }, {
             field : 'groupid',//对应json中的key
             title : '用户类型',
-            width : 150,
+            width : 100,
             formatter : function(value, row, index) {//通过此方法格式化显示内容,value表示从json中取出该单元格的值，row表示这一行的数据，是一个对象,index:行的序号
                 if(value =='1'){
                     return "卫生局";
@@ -49,12 +49,12 @@
         }, {
             field : 'sysmc',//对应json中的key
             title : '所属单位',
-            width : 250
+            width : 200
         },
             {
                 field : 'createtime',//对应json中的key
                 title : '创建时间',
-                width : 250
+                width : 220
             }, {
             field : 'userstate',//对应json中的key
             title : '状态',
@@ -66,7 +66,25 @@
                     return "暂停";
                 }
             }
-        } ] ];
+        } ,
+            {
+                field : 'opt1',//对应json中的key
+                title : '操作',
+                width : 80,
+                formatter : function(value, row, index) {//通过此方法格式化显示内容,value表示从json中取出该单元格的值，row表示这一行的数据，是一个对象,index:行的序号
+                    return "<a href=javascript:deleteUser('"+row.id+"')>删除</a>"
+                }
+            }
+            ,
+            {
+                field : 'opt2',//对应json中的key
+                title : '操作',
+                width : 80,
+                formatter : function(value, row, index) {//通过此方法格式化显示内容,value表示从json中取出该单元格的值，row表示这一行的数据，是一个对象,index:行的序号
+                    return "<a href=javascript:editUser('"+row.id+"')>修改</a>"
+                }
+            }
+            ] ];
 
         //定义 datagird工具
         var toolbar_v = [ {//工具栏
@@ -104,6 +122,26 @@
             //将form表单数据提取出来，组成一个json
             var formdata = $("#sysuserqueryForm").serializeJson();
             $('#sysuserlist').datagrid('load',formdata);
+        }
+        //删除方法
+        function deleteUser(id){
+            //第一个参数是提示信息，第二个参数，取消执行的函数指针，第三个参是，确定执行的函数指针
+            _confirm('您确认删除吗？',null,function (){
+                //将要删除的id赋值给deleteid，deleteid在sysuserdeleteform中
+                $("#delete_id").val(id);
+                //使用ajax的from提交执行删除
+                //sysuserdeleteform：form的id，userdel_callback：删除回调函数，
+                //第三个参数是url的参数
+                //第四个参数是datatype，表示服务器返回的类型
+                jquerySubByFId('sysuserdeleteform',userdel_callback,null,"json");
+            });
+            function userdel_callback(data){
+                if(data.success){
+                    queryuser()
+                }else{
+                    $.messager.alert('错误',data.msg,'error')
+                }
+            }
         }
     </script>
 
@@ -149,6 +187,9 @@
         </TR>
         </TBODY>
     </TABLE>
+</form>
+<form id="sysuserdeleteform" action="/user/delete" method="post">
+    <input type="hidden" id="delete_id" name="id"/>
 </form>
 </body>
 </html>

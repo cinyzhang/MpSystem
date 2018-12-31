@@ -48,5 +48,19 @@ public class UserController {
         return result;
     }
 
+    @PostMapping("delete")
+    public Object delete(String id){
+        boolean success=sysuserService.deleteByUserId(id);
+        JSONObject result = new JSONObject();
+        result.put("success", success);
+        if(success){
+            result.put("msg","删除成功");
+        }else{
+            result.put("msg","删除失败");
+        }
+        return result;
+
+    }
+
 
 }
