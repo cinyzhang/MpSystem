@@ -14,4 +14,6 @@ public interface SysuserService {
     Userjd findJdBymc(String mc);
     Usergys findGysBymc(String mc);
     Boolean deleteByUserId(String id);
+    SysuserCustom findUserByid(String id);
+    boolean editSysuser(SysuserCustom sysuserCustom);
 }

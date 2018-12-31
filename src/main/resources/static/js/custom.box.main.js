@@ -85,10 +85,8 @@ function message_alert(data){
 	//alert(message);
 	if(!data.success){
 		//如果type等于0表示失败，调用 jquery easyui的信息提示组件
-		alert("1111")
 		$.messager.alert('提示信息',data.msg,'error');
 	}else {
-		alert("222")
 		$.messager.alert('提示信息', data.msg, 'success');
 	}
 }

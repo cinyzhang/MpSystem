@@ -4,8 +4,12 @@ import cn.edu.hist.mapper.*;
 import cn.edu.hist.model.*;
 import cn.edu.hist.user.service.SysuserService;
 import com.github.pagehelper.PageHelper;
+import org.apache.tomcat.util.security.MD5Encoder;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
+import sun.security.provider.MD5;
 
 import java.util.List;
 import java.util.UUID;
@@ -128,6 +132,74 @@ public class SyuserServiceImpl implements SysuserService {
             return false;
         }
         sysuserMapper.deleteByPrimaryKey(sysuser.getId());
+        return true;
+    }
+
+    @Override
+    public SysuserCustom findUserByid(String id) {
+        Sysuser sysuser = sysuserMapper.selectByPrimaryKey(id);
+        String sysid = sysuser.getSysid();
+        if(sysuser == null)
+            return null;
+        String groupid = sysuser.getGroupid();
+        SysuserCustom sysuserCustom = new SysuserCustom();
+        BeanUtils.copyProperties(sysuser,sysuserCustom);
+        if("1".equals(groupid) || "2".equals(groupid)){
+            Userjd userjd = userjdMapper.selectByPrimaryKey(sysid);
+            sysuserCustom.setSysmc(userjd.getMc());
+        }else if("3".equals(groupid)){
+            Useryy useryy = useryyMapper.selectByPrimaryKey(sysid);
+            sysuserCustom.setSysmc(useryy.getMc());
+        }else if("4".equals(groupid)){
+            Usergys usergys = usergysMapper.selectByPrimaryKey(sysid);
+           sysuserCustom.setSysmc( usergys.getMc());
+        }
+        return sysuserCustom;
+    }
+
+    @Override
+    public boolean editSysuser(SysuserCustom sysuserCustom) {
+        String id = sysuserCustom.getId();
+        String userid = sysuserCustom.getUserid();
+        String sysmc = sysuserCustom.getSysmc();
+        String groupid = sysuserCustom.getGroupid();
+        Sysuser sysuser = sysuserMapper.selectByPrimaryKey(id);
+        String userid1 = sysuser.getUserid();
+        String sysid =null;
+        if(!userid1.equals(userid)){
+            Sysuser other = this.findUserByUserid(userid);
+            if(other != null)
+                return false;//修改的账号不能和其他人的账号相同
+        }
+        if("1".equals(groupid) || "2".equals(groupid)){
+            Userjd jd = this.findJdBymc(sysmc);
+            if(jd == null){
+                return false;
+            }else{
+                sysid=jd.getId();
+            }
+        } else if ("3".equals(groupid)) {
+            Useryy yy = this.findYyBymc(sysmc);
+            if(yy == null){
+                return false;
+            }else{
+                sysid=yy.getId();
+            }
+        } else if("4".equals(groupid)){
+            Usergys gys = this.findGysBymc(sysmc);
+            if (gys == null) {
+                return false;
+            }else{
+                sysid=gys.getId();
+            }
+        }
+        sysuserCustom.setSysid(sysid);
+        //如果用户不输入密码，则表示用户不修改密码
+        String pwd_page = sysuserCustom.getPwd();
+        if(!StringUtils.isEmpty(pwd_page)){
+            //对页面密码进行加密
+        }
+        sysuserMapper.updateByPrimaryKeySelective(sysuserCustom);
         return true;
     }
 

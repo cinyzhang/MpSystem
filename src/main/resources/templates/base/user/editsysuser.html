@@ -1,0 +1,133 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- 引用jquery easy ui的js库及css -->
+	<LINK rel="stylesheet" type="text/css"
+		  href="/js/easyui/styles/default.css"/>
+	<link rel="stylesheet" href="/styles/style.css"/>
+	<LINK rel="stylesheet" type="text/css"	href="/js/easyui/themes/default/easyui.css" />
+	<LINK rel="stylesheet" type="text/css"	href="/js/easyui/themes/icon.css">
+	<LINK rel="stylesheet" type="text/css" href="/js/easyui/styles/default.css">
+	<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+	<SCRIPT type="text/javascript" src="/js/easyui/jquery.easyui.min.1.2.2.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="/js/menuload.js"></SCRIPT>
+	<script type="text/javascript" src="/js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="/js/custom.jquery.form.js"></script>
+	<script type="text/javascript" src="/js/custom.box.main.js"></script>
+	<script type="text/javascript" src="/js/jquery.ajax.custom.extend.js"></script>
+<title>修改用户</title>
+<script type="text/javascript">
+  function sysusersave(){
+	  jquerySubByFId('userform',sysusersave_callback,null,"json");
+  }
+  //ajax调用的回调函数，ajax请求完成调用此函数，传入的参数是action返回的结果
+  function sysusersave_callback(data){
+	  message_alert(data);
+  }
+ 
+</script>
+</head>
+<body>
+
+
+<form id="userform" action="/user/edit" method="post">
+<!-- 更新用户的id -->
+<input type="hidden" name="sysuserCustom.id" th:value="${sysuserCustom.id}"/>
+<TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" bgColor=#c4d8ed>
+
+   <TBODY>
+   <TR>
+				<TD background=/images/r_0.gif width="100%">
+					<TABLE cellSpacing=0 cellPadding=0 width="100%">
+						<TBODY>
+							<TR>
+								<TD>&nbsp;系统用户信息</TD>
+								<TD align=right>&nbsp;</TD>
+							</TR>
+						</TBODY>
+					</TABLE>
+				</TD>
+			</TR>
+			
+			<TR>
+				<TD>
+					<TABLE class="toptable grid" border=1 cellSpacing=1 cellPadding=4
+						align=center>
+						<TBODY>
+							
+							<TR>
+								<TD height=30 width="15%" align=right >用户账号：</TD>
+								<TD class=category width="35%">
+								<div>
+								<input type="text" id="sysuser_userid" name="sysuserCustom.userid" th:value="${sysuserCustom.userid}" />
+								</div>
+								<!-- sysuser_useridTip用于显示提示信息，提示div的id等于校验input的id+Tip -->
+								<div id="sysuser_useridTip"></div>
+								</TD>
+								<TD height=30 width="15%" align=right >用户名称：</TD>
+								<TD class=category width="35%">
+								<div>
+								<input type="text" id="sysuser_username" name="sysuserCustom.username" th:value="${sysuserCustom.username}"  />
+								</div>
+								<div id="sysuser_usernameTip"></div>
+								</TD>
+							</TR>
+							<TR>
+								<TD height=30 width="15%" align=right >用户密码：</TD>
+								<TD class=category width="35%">
+								<div>
+								    如果要修改密码请在此输入<br/>
+									<input type="password" id="sysuser_password" name="sysuserCustom.pwd" />
+								
+								
+								</div>
+								<div id="sysuser_passwordTip"></div>
+								</TD>
+								<TD height=30 width="15%" align=right >用户类型：</TD>
+								<TD class=category width="35%">
+								<div>
+								<select name="sysuserCustom.groupid" id="sysuser_groupid">
+									
+								<option value="">请选择</option>
+								<option value="1" th:selected="${sysuserCustom.groupid=='1'}">卫生局</option>
+								<option value="2" th:selected="${sysuserCustom.groupid=='2'}">卫生院</option>
+								<option value="3" th:selected="${sysuserCustom.groupid=='3'}">卫生室</option>
+								<option value="4" th:selected="${sysuserCustom.groupid=='4'}">供货商</option>
+								<option value="0" th:selected="${sysuserCustom.groupid=='0'}">系统管理员</option>
+	
+								</select>
+								</div>
+								<div id="sysuser_groupidTip"></div>
+								</TD>
+								
+								
+							</TR>
+							<TR>
+							    <TD height=30 width="15%" align=right >用户单位名称：</TD><!-- 用处：根据名称获取单位id -->
+								<TD class=category width="35%">
+								<input type="text" name="sysuserCustom.sysmc" th:value="${sysuserCustom.sysmc}"/>
+								</TD>
+								<TD height=30 width="15%" align=right>用户状态：</TD>
+								<TD class=category width="35%">
+								<input type="radio" name="sysuserCustom.userstate" value="1" th:checked="${sysuserCustom.userstate=='1'}"/>正常
+								<input type="radio" name="sysuserCustom.userstate" value="0" th:checked="${sysuserCustom.userstate=='0'}"/>暂停
+								</TD>
+								
+							</TR>
+							<tr>
+							  <td colspan=4 align=center class=category>
+								<a id="submitbtn"  class="easyui-linkbutton"   iconCls="icon-ok" href="#" onclick="sysusersave()">提交</a>
+								<a id="closebtn"  class="easyui-linkbutton" iconCls="icon-cancel" href="#" onclick="parent.closemodalwindow()">关闭</a>
+							  </td>
+							</tr>
+						
+							</TBODY>
+						</TABLE>
+					</TD>
+				</TR>
+   </TBODY>
+</TABLE>
+</form>
+</body>
+</html>

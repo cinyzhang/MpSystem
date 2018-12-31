@@ -1,10 +1,12 @@
 package cn.edu.hist.user.controller;
 
+import cn.edu.hist.model.SysuserCustom;
 import cn.edu.hist.model.SysuserVo;
 import cn.edu.hist.user.service.SysuserService;
 import com.xiaoleilu.hutool.json.JSONObject;
 import com.xiaoleilu.hutool.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,6 +63,28 @@ public class UserController {
         return result;
 
     }
+
+    @GetMapping("toEdit")
+    public ModelAndView toEdit(ModelAndView md,String id){
+        SysuserCustom sysuserCustom = sysuserService.findUserByid(id);
+        md.addObject("sysuserCustom",sysuserCustom);
+        md.setViewName("base/user/editsysuser");
+        return md;
+    }
+
+    @PostMapping("edit")
+    public Object edit(SysuserVo sysuserVo){
+        boolean success = sysuserService.editSysuser(sysuserVo.getSysuserCustom());
+        JSONObject result = new JSONObject();
+        result.put("success", success);
+        if(success){
+            result.put("msg","修改成功");
+        }else{
+            result.put("msg","修改失败");
+        }
+        return result;
+    }
+
 
 
 }
