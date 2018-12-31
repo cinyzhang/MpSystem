@@ -1,7 +1,116 @@
 {
-  "menus" : [{"icon" : "icon-sys","menuid" : "1","menuname" : "系统管理","url" : "","menus" : [
-    {"icon" : "icon-log","menuid" : "1_1","menuname" : "用户管理","url" : "user/toquery"
-    }]
-  }
+  "menus": [
+    {
+      "icon": "icon-sys",
+      "menuid": "1",
+      "menuname": "系统管理",
+      "url": "",
+      "menus": [
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "用户管理",
+          "url": "/user/toquery"
+        }
+      ]
+    },
+    {
+      "icon": "icon-sys",
+      "menuid": "1",
+      "menuname": "药品目录 ",
+      "url": "",
+      "menus": [
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "药品目录导出",
+          "url": "/ypml/exportYpxx"
+        },
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "药品目录导入",
+          "url": "/ypml/importypxx"
+        }
+      ]
+    },
+    {
+      "icon": "icon-sys",
+      "menuid": "1",
+      "menuname": "供货商药品目录 ",
+      "url": "",
+      "menus": [
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "供货商药品目录维护",
+          "url": "/ypml/querygysypml"
+        },
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "供货商药品目录控制",
+          "url": "/ypml/querygysypmlcontrol"
+        }
+      ]
+    },
+    {
+      "icon": "icon-sys",
+      "menuid": "1",
+      "menuname": "采购单管理 ",
+      "url": "",
+      "menus": [
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "创建采购单",
+          "url": "/cgd/addcgd"
+        },
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "采购单维护",
+          "url": "/cgd/yycgdlist"
+        },
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "采购单审核",
+          "url": "/cgd/checkyycgdlist"
+        },
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "采购单受理",
+          "url": "/cgd/disposeyycgd"
+        },
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "入库",
+          "url": "/cgd/receiveyycgd"
+        }
+      ]
+    },
+    {
+      "icon": "icon-sys",
+      "menuid": "1",
+      "menuname": "统计分析 ",
+      "url": "",
+      "menus": [
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "交易明细查询",
+          "url": "/tj/businesslist"
+        },
+        {
+          "icon": "icon-log",
+          "menuid": "1_1",
+          "menuname": "按药品统计",
+          "url": "/tj/groupbyypxx"
+        }
+      ]
+    }
   ]
 }
