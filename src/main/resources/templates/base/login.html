@@ -21,7 +21,7 @@
         text-decoration: none;
     }
 </STYLE>
-<script type="text/javascript" src="/static/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         //*****************表单校验******************
@@ -89,7 +89,7 @@
     //实现思路，重新给图片的src赋值，后边加时间，防止缓存
     function randomcode_refresh() {
         $("#randomcode_img").attr('src',
-            '${baseurl}validatecode.jsp?time' + new Date().getTime());
+            'validatecode.jsp?time' + new Date().getTime());
     }
     //回首页
     function tofirst(){
@@ -107,7 +107,7 @@
     }
 </SCRIPT>
 </HEAD>
-<BODY style="background: #f6fdff url(static/images/login/bg1.jpg) repeat-x;">
+<BODY style="background: #f6fdff url(/images/login/bg1.jpg) repeat-x;">
 <FORM id="loginform" name="loginform" action="loginsubmit.action"
       method="post">
     <DIV class="logincon">

@@ -1,6 +1,5 @@
 package cn.edu.hist.model;
 
-import cn.edu.hist.model.Sysuser;
 
 public class SysuserCustom extends Sysuser {
     private String sysmc;
