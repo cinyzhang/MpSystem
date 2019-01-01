@@ -5,7 +5,7 @@
 1、开发的操作系统是基于ubuntu的mint系统</br>
 2、项目开发所使用的工具为IntelliJ IDEA,该工具非常强大而且相对于Eclipse较为轻量</br>
 3、使用Gradle构建项目，优点是便于jar包管理和项目打包部署</br>
-4、所用到的前端框架包括jQuery、JQuery easyui、Echarts和Bootstrap，动态数据加载采用thymeleaf技术；</br>
+4、所用到的前端框架包括jQuery、JQuery easyui、Echarts和Bootstrap，数据动态加载采用thymeleaf技术；</br>
 5、后端采用目前企业最流行的springboot2技术</br>
   <pre> 
         5.1、数据持久层采用Mybatis框架；</br>
