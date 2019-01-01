@@ -9,6 +9,9 @@
     <script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
     <SCRIPT type="text/javascript" src="/js/easyui/jquery.easyui.min.1.2.2.js"></SCRIPT>
     <SCRIPT type="text/javascript" src="/js/menuload.js"></SCRIPT>
+    <script type="text/javascript" src="/js/custom.jquery.form.js"></script>
+    <script type="text/javascript" src="/js/custom.box.main.js"></script>
+    <script type="text/javascript" src="/js/jquery.ajax.custom.extend.js"></script>
     <SCRIPT type="text/javascript">
         var tabOnSelect = function(title) {
             //根据标题获取tab对象
@@ -62,7 +65,7 @@
         function logout() {
             _confirm('您确定要退出本系统吗?',null,
                 function(){
-                    location.href = '${baseurl}logout.action';
+                    location.href = '/logout';
                 }
             )
         }
@@ -86,7 +89,7 @@
         style='background: url("/images/layout-browser-hd-bg.gif") repeat-x center 50% rgb(127, 153, 190); height: 30px; color: rgb(255, 255, 255); line-height: 20px; overflow: hidden; font-family: Verdana, 微软雅黑, 黑体;'
         border="false" split="true" region="north">
 		<SPAN style="padding-right: 20px; float: right;" class="head">
-			欢迎当前用户：${activeUser.username}&nbsp;&nbsp;
+            欢迎当前用户：<span th:text="${activeUser.username}"></span> &nbsp;&nbsp;
 			<A href=javascript:showhelp()>使用帮助</A>
 			&nbsp;&nbsp;
 			<A title='修改密码' ref='modifypwd' href="#" rel='user/updatepwd.action' icon='icon-null' id="modifypwd" >修改密码</A>
@@ -102,7 +105,7 @@
      region="south">
 
     <DIV class="footer">
-        系统版本号：${version_number}&nbsp;&nbsp;&nbsp;发布日期：${version_date}
+        系统版本号：<span th:text="${version_number}" style="color: #080d13"></span>&nbsp;&nbsp;&nbsp;发布日期：<span th:text="${version_date}" style="color: #0c0c13"></span>
     </DIV>
 </DIV>
 
