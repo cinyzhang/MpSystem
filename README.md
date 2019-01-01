@@ -8,10 +8,10 @@
 4、所用到的前端框架包括jQuery、JQuery easyui、Echarts和Bootstrap，动态数据加载采用thymeleaf技术；</br>
 5、后端采用目前企业最流行的springboot2技术</br>
   <pre> 
-        4.1、数据持久层采用Mybatis框架；</br>
-        4.2、数据库连接池采用阿里巴巴的druid；</br>
-        4.3、任务调度使用Quartz框架；</br>
-        4.4、权限管理采用shiro框架；</br>
+        5.1、数据持久层采用Mybatis框架；</br>
+        5.2、数据库连接池采用阿里巴巴的druid；</br>
+        5.3、任务调度使用Quartz框架；</br>
+        5.4、权限管理采用shiro框架；</br>
    </pre>
 6、数据库采用关系型数据库MySQL，优点是免费，现在绝大数公司都使用的关系型数据库</br>
 7、代码采用git仓库管理
