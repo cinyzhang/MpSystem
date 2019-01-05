@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+<title>药品目录导出</title>
+	<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+	<link rel="stylesheet" href="/styles/style.css"/>
+	<LINK rel="stylesheet" type="text/css"	href="/js/easyui/themes/default/easyui.css" />
+	<LINK rel="stylesheet" type="text/css"	href="/js/easyui/themes/icon.css">
+	<LINK rel="stylesheet" type="text/css" href="/js/easyui/styles/default.css">
+	<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+	<SCRIPT type="text/javascript" src="/js/jquery.form.min.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="/js/easyui/jquery.easyui.min.1.2.2.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="/js/menuload.js"></SCRIPT>
+	<script type="text/javascript" src="/js/custom.jquery.form.js"></script>
+	<script type="text/javascript" src="/js/custom.box.main.js"></script>
+	<script type="text/javascript" src="/js/jquery.ajax.custom.extend.js"></script>
+<script type="text/javascript">
+//药品信息导出
+function ypxxexport(){
+	//调用ajax Form提交
+	jquerySubByFId('ypxxlistFrom',ypxxExprot_callback,null,"json");
+	
+}
+function ypxxExprot_callback(data){
+	
+	//在这里提示信息中有文件下载链接
+	message_alert(data);
+	
+}
+</script>
+
+</head>
+<body>
+<!-- 导出条件 -->
+
+<form id="ypxxlistFrom" name="ypxxlistFrom" action="/ypml/exportYpxxSubmit" method="post">
+<TABLE  class="table_search">
+				<TBODY>
+					<TR>
+						<TD class="left">流水号：</TD>
+						<td ><INPUT type="text" name="ypxxCustom.bm" /></td>
+						<TD class="left">通用名：</td>
+						<td><INPUT type="text"  name="ypxxCustom.mc" /></TD>
+						
+						<TD class="left">药品类别：</TD>
+						<td >
+							<select id="ypxxCustom.lb" name="ypxxCustom.lb" style="width:150px">
+								<option value="">全部</option>
+								<option th:each="yplb:${yplblist}" th:text="${yplb.info}" th:value="${yplb.id}"></option>
+							</select>
+						</td>
+						<TD class="left">交易状态：</TD>
+						<td >
+							<select id="ypxxCustom.jyzt" name="ypxxCustom.jyzt" style="width:150px">
+								<option value="">全部</option>
+								<option th:each="jyzt:${jyztlist}" th:value="${jyzt.dictcode}" th:text="${jyzt.info}"></option>
+							</select>
+							
+						</td>
+					</TR>
+					<tr>
+					  <td colspan="12" style="text-align:center"><a id="btn" href="#" onclick="ypxxexport()" class="easyui-linkbutton" iconCls='icon-search'>导出</a></td>
+					</tr>
+				</TBODY>
+			</TABLE>
+			
+</form>
+
+
+</body>
+</html>

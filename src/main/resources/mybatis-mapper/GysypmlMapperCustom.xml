@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.hist.mapper.GysypmlMapperCustom">
+
+
+	<!-- 供货商药品目录查询条件 -->
+	<sql id="query_gysypml_where">
+		<if test="gysypmlCustom!=null">
+			<if test="gysypmlCustom.usergysid!=null and gysypmlCustom.usergysid!=''">
+				and gysypml.usergysid = #{gysypmlCustom.usergysid}
+			</if>
+			<if test="gysypmlCustom.ypxxid!=null and gysypmlCustom.ypxxid!=''">
+				and gysypml.ypxxid = #{gysypmlCustom.ypxxid}
+			</if>
+		</if>
+
+	</sql>
+	<!-- 供货商目录控制查询条件 -->
+	<sql id="query_gysypmlcontrol_where">
+		<if test="gysypmlCustom!=null">
+			<if test="gysypmlCustom.control!=null and gysypmlCustom.control!=''">
+				and gysypml_control.control = #{gysypmlCustom.control}
+			</if>
+			<if test="gysypmlCustom.usergysid!=null and gysypmlCustom.usergysid!=''">
+				and gysypml_control.usergysid = #{gysypmlCustom.usergysid}
+			</if>
+			<if test="gysypmlCustom.ypxxid!=null and gysypmlCustom.ypxxid!=''">
+				and gysypml_control.ypxxid = #{gysypmlCustom.ypxxid}
+			</if>
+		</if>
+
+	</sql>
+
+	<!-- 供货商药品目录查询 -->
+	<select id="findGysypmlList" parameterType="cn.edu.hist.model.GysypmlQueryVo"
+		resultType="cn.edu.hist.model.GysypmlCustom">
+		<!-- 分页头 -->
+		<if test="pageQuery!=null">
+			select page_2.*
+			from (select page_1.*, rownum page_num
+			from
+			(
+		</if>
+
+		select
+		gysypml.id gysypmlid,
+		gysypml.ypxxid,
+		gysypml.usergysid,
+		usergys.mc usergysmc,
+		gysypml_control.control,
+		(select info
+		from dictinfo
+		where typecode = '008'
+		and dictcode = gysypml_control.control) controlmc,
+
+		ypxx.id,
+		ypxx.bm,
+		ypxx.mc,
+		ypxx.jx,
+		ypxx.gg,
+		ypxx.zhxs,
+		ypxx.scqymc,
+		ypxx.spmc,
+		ypxx.zbjg,
+		ypxx.jyzt,
+
+		(select info
+		from dictinfo
+		where ypxx.jyzt = dictcode
+		and typecode = '003') jyztmc
+
+		from gysypml, usergys, gysypml_control, ypxx
+		where gysypml.usergysid = usergys.id
+		and gysypml.ypxxid = gysypml_control.ypxxid
+		and gysypml.usergysid = gysypml_control.usergysid
+		and gysypml.ypxxid = ypxx.id
+
+		<include refid="query_gysypml_where" />
+		<include refid="query_gysypmlcontrol_where" />
+		<!-- 药品查询条件 -->
+		<include refid="cn.edu.hist.mapper.YpxxMapperCustom.query_ypxx_where" />
+
+		<!-- 分页尾 -->
+		<if test="pageQuery!=null">
+			) page_1
+        <![CDATA[
+         where rownum <= ${pageQuery.PageQuery_end}) page_2
+ where page_2.page_num >= ${pageQuery.PageQuery_start}
+ ]]>
+		</if>
+	</select>
+
+
+	<!-- 供货商药品目录查询总数 -->
+	<select id="findGysypmlCount" parameterType="cn.edu.hist.model.GysypmlQueryVo"
+		resultType="int">
+
+
+		select count(1)
+
+		from gysypml, usergys, gysypml_control, ypxx
+		where gysypml.usergysid = usergys.id
+		and gysypml.ypxxid = gysypml_control.ypxxid
+		and gysypml.usergysid = gysypml_control.usergysid
+		and gysypml.ypxxid = ypxx.id
+
+		<include refid="query_gysypml_where" />
+		<include refid="query_gysypmlcontrol_where" />
+		<!-- 药品查询条件 -->
+		<include refid="cn.edu.hist.mapper.YpxxMapperCustom.query_ypxx_where" />
+
+
+	</select>
+
+	<!-- 供货商添加药品目录 查询 -->
+	<select id="findAddGysypmlList" parameterType="cn.edu.hist.model.GysypmlQueryVo"
+		resultType="cn.edu.hist.model.GysypmlCustom">
+	<!-- 分页头 -->
+		<if test="pageQuery!=null">
+			select page_2.*
+			from (select page_1.*, rownum page_num
+			from
+			(
+		</if>
+
+		select ypxx.id,
+		ypxx.bm,
+		ypxx.mc,
+		ypxx.jx,
+		ypxx.gg,
+		ypxx.zhxs,
+		ypxx.scqymc,
+		ypxx.spmc,
+		ypxx.zbjg,
+		ypxx.jyzt,
+
+		(select info
+		from dictinfo
+		where ypxx.jyzt = dictcode
+		and typecode = '003') jyztmc
+
+		from ypxx
+
+		where not exists (select id
+		from gysypml
+		where usergysid = #{gysypmlCustom.usergysid}
+		and ypxx.id = gysypml.ypxxid)
+		
+		<!-- 药品查询条件 -->
+		<include refid="cn.edu.hist.mapper.YpxxMapperCustom.query_ypxx_where" />
+<!-- 分页尾 -->
+		<if test="pageQuery!=null">
+			) page_1
+        <![CDATA[
+         where rownum <= ${pageQuery.PageQuery_end}) page_2
+ where page_2.page_num >= ${pageQuery.PageQuery_start}
+ ]]>
+		</if>
+	</select>
+<!-- 供货商添加药品目录查询列表总数 -->
+<select id="findAddGysypmlCount" parameterType="cn.edu.hist.model.GysypmlQueryVo"
+		resultType="int">
+	
+
+		select count(*)
+		from ypxx
+
+		where not exists (select id
+		from gysypml
+		where usergysid = #{gysypmlCustom.usergysid}
+		and ypxx.id = gysypml.ypxxid)
+		
+		<!-- 药品查询条件 -->
+		<include refid="cn.edu.hist.mapper.YpxxMapperCustom.query_ypxx_where" />
+
+	</select>
+
+</mapper>

@@ -1,0 +1,92 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+<title>药品信息导入</title>
+	<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+	<link rel="stylesheet" href="/styles/style.css"/>
+	<LINK rel="stylesheet" type="text/css"	href="/js/easyui/themes/default/easyui.css" />
+	<LINK rel="stylesheet" type="text/css"	href="/js/easyui/themes/icon.css">
+	<LINK rel="stylesheet" type="text/css" href="/js/easyui/styles/default.css">
+	<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+	<SCRIPT type="text/javascript" src="/js/jquery.form.min.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="/js/easyui/jquery.easyui.min.1.2.2.js"></SCRIPT>
+	<SCRIPT type="text/javascript" src="/js/menuload.js"></SCRIPT>
+	<script type="text/javascript" src="/js/custom.jquery.form.js"></script>
+	<script type="text/javascript" src="/js/custom.box.main.js"></script>
+	<script type="text/javascript" src="/js/jquery.ajax.custom.extend.js"></script>
+
+<script lang="text/javascript">
+$(function(){
+	//***********按钮**************
+	$('#submitbtn').linkbutton({   
+		iconCls: 'icon-ok'  
+	});  
+	$('#closebtn').linkbutton({   
+		iconCls: 'icon-cancel'  
+	});
+});
+//文件导入提交
+function ypxximportsubmit(){
+	jquerySubByFId('ypxximportForm',ypxximportsubmit_callback,null);
+}
+function ypxximportsubmit_callback(data){
+	message_alert(data);
+}
+</script>
+
+</head>
+<body>
+<form id="ypxximportForm" name="ypxximportForm" 
+action="/ypml/importypxxsubmit" method="post"
+ enctype="multipart/form-data">
+<TABLE border=0 cellSpacing=0 cellPadding=0 width="100%" bgColor=#c4d8ed>
+		<TBODY>
+			<TR>
+				<TD background=images/r_0.gif width="100%">
+					<TABLE cellSpacing=0 cellPadding=0 width="100%">
+						<TBODY>
+							<TR>
+								<TD>&nbsp;药品信息导入</TD>
+								<TD align=right>&nbsp;</TD>
+							</TR>
+						</TBODY>
+					</TABLE>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<TABLE class="toptable grid" border=1 cellSpacing=1 cellPadding=4
+						align=center>
+						<TBODY>
+							
+							<TR>
+								<TD height=30 align=right>导入说明：</TD>
+								<TD >
+								1、导入文件为Excel 97-2003版本，文件扩展名为.xls，如果使用高版本的Excel请另存为Excel 97-2003版本。
+								<br>2、点击 <a class="blue" href="/template/ypxx_template.xls"><u>药品信息模板</u></a> 下载，并按照说明录入药品信息。
+								<br>3、导入文件内容填写完毕请在下方选择导入文件，点击 导入按钮。
+								</TD>
+							</TR>
+							<TR>
+								<TD height=30 align=right>选择导入文件</TD>
+								<TD class=category>
+								<input type="file" name="ypxximportfile" />					
+								</TD>
+							</TR>
+							<TR>
+								
+								<TD colspan=2  align=center class=category>
+									<a id="submitbtn" href="#" onclick="ypxximportsubmit()">导入</a>
+									<a id="closebtn" href="#" onclick="parent.closemodalwindow()">关闭</a>
+								</TD>
+							</TR>
+						</TBODY>
+					</TABLE>
+				</TD>
+			</TR>
+		</TBODY>
+	</TABLE>
+</form>
+</body>
+
+</html>
+
