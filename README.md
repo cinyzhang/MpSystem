@@ -22,7 +22,7 @@ _技术指标:_
 5、后端采用目前企业最流行的 springboot2 技术,数据持久层采用 Mybatis 框架,数据库连接池采
 用阿里巴巴的 druid ,权限管理采用 shiro 框架;
 6、数据库采用关系型数据库 MySQL ,优点是免费,现在绝大数公司都使用的关系型数据库;
-代码采用 git 仓库管理;
+7、代码采用 git 仓库管理;
 </pre>
 **二、硬件环境:**
 <pre>
@@ -35,10 +35,10 @@ _参考文献:_
 
 <pre>
 [1]Horstmann.Java 核心技术系列第 10 版 .[M]. 机械工业出版社 ,2016/.218G /-411
-[2] 明日科技 .Java Web 项目开发实战入门 .[M]. 吉林大学出版社 ,2017.106G/-232
+[2]明日科技.Java Web 项目开发实战入门 .[M]. 吉林大学出版社 ,2017.106G/-232
 [3]Williams, N.S.Java Web 高级编程 .[M]. 清华大学出版社 ,2016G/.120-302
 [4]Iuliana Cosmina.Spring 5 高级编程(第 5 版) .[M]. 清华大学出版社 ,2019.56G/-170
-[5]:Budi,Kurniawan , Paul,Deck.Servlet JSP 和 Spring MVC 初学指南 .[M]. 人民邮电出版
+[5]Budi,Kurniawan , Paul,Deck.Servlet JSP 和 Spring MVC 初学指南 .[M]. 人民邮电出版
 社 ,2018G /.100-150
 [6] 于静 .Java Web 应用开发教程 .[M]. 北京邮电大学出版社有限公司 ,2018G /.93-105
 [7] 陈雄华 . 精通 Spring 4.x 企业应用开发实战 .[M]. 电子工业出版社 ,2018G /.33-47
