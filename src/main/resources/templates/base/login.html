@@ -84,7 +84,7 @@
 
         //登录提示回调方法
         function login_commit_callback(data) {
-            message_alert(data);
+            message_alert_2(data);
             if (data.success) {//如果登录成功，这里1秒后执行跳转到首页
                 setTimeout("tofirst()", 1000);
             }

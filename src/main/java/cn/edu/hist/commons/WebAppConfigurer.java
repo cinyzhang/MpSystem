@@ -15,7 +15,7 @@ public class WebAppConfigurer implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor())
                 .addPathPatterns("/**")
-               .excludePathPatterns("/","/index.html","/images/**","/styles/**","/js/**","/index.css","/login*","/favicon.ico","/error","/welcome","/menu.json")
+               .excludePathPatterns("/","/index.html","/images/**","/styles/**","/js/**","/upload/**","/index.css","/login*","/favicon.ico","/error","/welcome","/menu.json")
         ;
     }
 }
